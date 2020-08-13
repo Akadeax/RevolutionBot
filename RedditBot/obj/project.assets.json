@@ -8,19 +8,19 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {}
+    "C:\\Users\\TheAlphaKarp\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\dev\\Programming\\CS\\VanillaCS\\RevolutionBot\\RedditBot\\RedditBot\\RedditBot.csproj",
+      "projectUniqueName": "C:\\dev\\C#\\RevolutionBot\\RedditBot\\RedditBot.csproj",
       "projectName": "RedditBot",
-      "projectPath": "D:\\dev\\Programming\\CS\\VanillaCS\\RevolutionBot\\RedditBot\\RedditBot\\RedditBot.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\dev\\Programming\\CS\\VanillaCS\\RevolutionBot\\RedditBot\\RedditBot\\obj\\",
+      "projectPath": "C:\\dev\\C#\\RevolutionBot\\RedditBot\\RedditBot.csproj",
+      "packagesPath": "C:\\Users\\TheAlphaKarp\\.nuget\\packages\\",
+      "outputPath": "C:\\dev\\C#\\RevolutionBot\\RedditBot\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\TheAlphaKarp\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -53,12 +53,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.2, 3.1.2]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[3.1.0, 3.1.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[3.1.0, 3.1.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
