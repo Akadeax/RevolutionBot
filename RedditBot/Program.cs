@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using System;
+using OpenQA.Selenium.Chrome;
 
 namespace RedditBot
 {
@@ -9,13 +10,10 @@ namespace RedditBot
     {
         static void Main(string[] args)
         {
-            IWebDriver driver = new FirefoxDriver("reddit.com");
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("reddit.com");
 
-            try
-            {
-                driver.FindElement
-            }
+            Console.WriteLine("works");
         }
     }
 }
