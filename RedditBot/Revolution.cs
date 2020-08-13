@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Threading;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -10,7 +11,7 @@ namespace RedditBot
 {
     public class Revolution
     {
-        private IWebDriver driver;
+        private readonly IWebDriver driver;
 
         public Revolution()
         {
@@ -23,7 +24,7 @@ namespace RedditBot
             Start();
         }
         
-        private IWebElement waitForElement(string locator, int maxSeconds)
+        private IWebElement WaitForElement(string locator, int maxSeconds)
         {
             return new WebDriverWait(this.driver, TimeSpan.FromSeconds(maxSeconds))
                 .Until(driver => driver.FindElement(By.XPath(locator)));
@@ -53,35 +54,62 @@ namespace RedditBot
                 .Until(driver => driver.FindElements(By.XPath(locator)));
         }
 
-        private IWebElement findNestedElment(string locator, IWebElement parent, int maxSeconds)
+        private IWebElement findNestedElement(string locator, IWebElement parent, int maxSeconds)
         {
             try
             {
                 return new WebDriverWait(this.driver, TimeSpan.FromSeconds(maxSeconds))
-                    .Until(parent => parent.FindElement(By.CssSelector(locator)));
+                    .Until(parent => {
+                        try
+                        {
+                            return parent.FindElement(By.CssSelector(locator));
+                        }
+                        catch(Exception e)
+                        {
+                            return null;
+                        }
+                    });
             }
-            catch (Exception error)
+            catch (Exception)
             {
                 return null;
             }
             
         }
 
+        public string Username
+        {
+            get
+            {
+                return File.ReadAllLines("Data\\Credentials.txt")[0];
+            }
+        }
+        public string Password
+        {
+            get
+            {
+                return File.ReadAllLines("Data\\Credentials.txt")[1];
+            }
+        }
+
         private void Start()
         {
-            IWebElement element = waitForElement("//*[@id=\"header-bottom-right\"]/span[1]/a[1]", 20);
+            IWebElement element = WaitForElement("//*[@id=\"header-bottom-right\"]/span[1]/a[1]", 20);
             element.Click();
+            Thread.Sleep(2000);
             
-            IWebElement username = waitForElement("//*[@id=\"user_login\"]", 5);
-            username.SendKeys(CONFIG.USERNAME);
+            IWebElement username = WaitForElement("//*[@id=\"user_login\"]", 5);
+            username.SendKeys(Username);
+            Thread.Sleep(500);
 
-            IWebElement password = waitForElement("//*[@id=\"passwd_login\"]", 5);
-            password.SendKeys(CONFIG.PASSWORD);
+            IWebElement password = WaitForElement("//*[@id=\"passwd_login\"]", 5);
+            password.SendKeys(Password);
+            Thread.Sleep(500);
             
-            IWebElement login = waitForElement("//*[@id=\"login-form\"]/div[5]/button", 5);
+            IWebElement login = WaitForElement("//*[@id=\"login-form\"]/div[5]/button", 5);
             login.Click();
             
-            Thread.Sleep(5000);
+            Thread.Sleep(500);
             NavigateToModernReddit();
             
             StartDownVoting();
@@ -99,7 +127,6 @@ namespace RedditBot
 
         private void StartDownVoting()
         {
-            string lastPostId = "";
 
             while (true)
             {
@@ -112,22 +139,16 @@ namespace RedditBot
                 
                 foreach (var post in posts)
                 {
-                    if (post.GetAttribute("id") == lastPostId)
-                    {
-                        Console.WriteLine("Found last downvoted post and decided to stop");
-                        break;
-                    }
-
-                    IWebElement downvoteButton = findNestedElment(".down", post, 5);
+                    IWebElement downvoteButton = findNestedElement(".down", post, 1);
 
                     if (downvoteButton != null)
                     {
                         try
                         {
+                            Console.WriteLine("Downvoting post...");
                             downvoteButton.Click();
-                            lastPostId = post.GetAttribute("id");
                         }
-                        catch (Exception error)
+                        catch (Exception)
                         {
                             Console.WriteLine("Not Clickable");
                         }
@@ -140,8 +161,8 @@ namespace RedditBot
                     Thread.Sleep(r.Next(100, 1000));
                 }
 
-                Console.WriteLine("Going to sleep, see ya in 20 seconds");
-                Thread.Sleep(20000);
+                Console.WriteLine("Going to sleep, see ya in 10 seconds");
+                Thread.Sleep(10000);
             }
         }
     }
