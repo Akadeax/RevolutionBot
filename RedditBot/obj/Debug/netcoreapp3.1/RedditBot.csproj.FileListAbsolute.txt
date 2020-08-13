@@ -1,0 +1,4 @@
+D:\dev\Programming\CS\VanillaCS\RevolutionBot\RedditBot\RedditBot\bin\Debug\netcoreapp3.1\RedditBot.exe
+D:\dev\Programming\CS\VanillaCS\RevolutionBot\RedditBot\RedditBot\obj\Debug\netcoreapp3.1\RedditBot.csprojAssemblyReference.cache
+D:\dev\Programming\CS\VanillaCS\RevolutionBot\RedditBot\RedditBot\obj\Debug\netcoreapp3.1\RedditBot.AssemblyInfoInputs.cache
+D:\dev\Programming\CS\VanillaCS\RevolutionBot\RedditBot\RedditBot\obj\Debug\netcoreapp3.1\RedditBot.AssemblyInfo.cs
