@@ -10,10 +10,7 @@ namespace RedditBot
     {
         static void Main(string[] args)
         {
-            IWebDriver driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("reddit.com");
-
-            Console.WriteLine("works");
+            new Revolution();
         }
     }
 }
