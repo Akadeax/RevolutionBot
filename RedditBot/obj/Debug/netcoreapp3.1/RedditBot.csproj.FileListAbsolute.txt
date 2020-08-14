@@ -34,3 +34,5 @@ D:\dev\Programming\CS\VanillaCS\RevolutionBot\RedditBot\obj\Debug\netcoreapp3.1\
 D:\dev\Programming\CS\VanillaCS\RevolutionBot\RedditBot\obj\Debug\netcoreapp3.1\RedditBot.pdb
 D:\dev\Programming\CS\VanillaCS\RevolutionBot\RedditBot\bin\Debug\netcoreapp3.1\chromedriver.exe
 D:\dev\Programming\CS\VanillaCS\RevolutionBot\RedditBot\bin\Debug\netcoreapp3.1\Data\Credentials.txt
+C:\dev\C#\RevolutionBot\RedditBot\bin\Debug\netcoreapp3.1\chromedriver.exe
+C:\dev\C#\RevolutionBot\RedditBot\bin\Debug\netcoreapp3.1\Data\Credentials.txt

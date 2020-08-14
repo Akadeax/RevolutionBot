@@ -12,11 +12,32 @@ namespace RedditBot
     public class Revolution
     {
         private readonly IWebDriver driver;
+        private double DDay = 1597460400;
 
         public Revolution()
         {
             ChromeOptions options = new ChromeOptions();
+            Random r = new Random();
             options.AddArguments("--disable-notifications");
+            options.AddArgument("--start-maximized");
+            options.AddArgument("--ignore-certificate-errors");
+            options.AddArgument("--disable-popup-blocking");
+            options.AddArgument("--incognito");
+
+            while (true)
+            {
+                Int32 unixTimestamp = (Int32)(DateTime.UtcNow.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+                if (unixTimestamp > DDay)
+                {
+                    break;
+                }
+                Console.WriteLine(unixTimestamp);
+                                                                
+                Thread.Sleep(5000);
+            }
+            
+            Thread.Sleep(r.Next(1000, 10000));
 
             this.driver = new ChromeDriver(options);
             driver.Navigate().GoToUrl("https://www.reddit.com/domain/old.reddit.com/");
@@ -155,14 +176,14 @@ namespace RedditBot
                     }
                     else
                     {
-                        Console.WriteLine("element was null");
+                        Console.WriteLine("Downvote button already hit");
                     }
                     
                     Thread.Sleep(r.Next(100, 1000));
                 }
 
-                Console.WriteLine("Going to sleep, see ya in 10 seconds");
-                Thread.Sleep(10000);
+                Console.WriteLine("Going to sleep, see ya in 10 Minutes");
+                Thread.Sleep(1000 * 60 * 6);
             }
         }
     }
